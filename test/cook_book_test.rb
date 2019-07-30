@@ -16,8 +16,8 @@ class CookBookTest < Minitest::Test
     @ground_beef = Ingredient.new("Ground Beef", "oz", 100)
     @bun = Ingredient.new("Bun", "g", 1)
     @burger = Recipe.new("Burger")
-    @burger.add_ingredient(@bun, 100)
     @burger.add_ingredient(@ground_beef, 4)
+    @burger.add_ingredient(@bun, 100)
   end
 
   def test_cookbook_exists

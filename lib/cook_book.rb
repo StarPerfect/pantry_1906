@@ -15,6 +15,7 @@ class CookBook
 
   def ingredient_details(recipe)
     ingredients = []
+    recipe.ingredients.sort_by{ |ingredient| ingredient.calories * ingredients_required[ingredient] }
     recipe.ingredients.map do |ingredient|
       details = {
         :ingredient => ingredient.name,
@@ -22,8 +23,7 @@ class CookBook
       }
       ingredients << details
     end
-    ingredients.uniq.reverse
-    # ingredients.sort_by recipe.total_calories -continue to figure out how to sort by amount of calories contributed to recipe
+    ingredients
   end
 
   def add_recipe(recipe)

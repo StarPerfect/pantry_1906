@@ -16,8 +16,8 @@ class CookBookTest < Minitest::Test
     @ground_beef = Ingredient.new("Ground Beef", "oz", 100)
     @bun = Ingredient.new("Bun", "g", 1)
     @burger = Recipe.new("Burger")
-    @burger.add_ingredient(@ground_beef, 4)
     @burger.add_ingredient(@bun, 100)
+    @burger.add_ingredient(@ground_beef, 4)
   end
 
   def test_cookbook_exists
@@ -48,6 +48,15 @@ class CookBookTest < Minitest::Test
     expected = [{:ingredient=>"Macaroni", :amount=>"8 oz"},
                 {:ingredient=>"Cheese", :amount=>"2 C"}]
 
-    assert_equal expected, @mac_and_cheese.ingredient_details
+    assert_equal expected, @cookbook.ingredient_details(@mac_and_cheese)
+  end
+
+  def test_recipe_details
+    expected = {  :name=>"Mac and Cheese",
+                  :details=>{ :ingredients=>[{:ingredient=>"Macaroni", :amount=>"8 oz"},
+                                            {:ingredient=>"Cheese", :amount=>"2 C"}],
+                  :total_calories=>440}}
+
+    assert_equal expected, @cookbook.recipe_details(@mac_and_cheese)
   end
 end
